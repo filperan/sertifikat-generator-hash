@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sertifikat Generator</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <h1 class="text-2xl font-bold text-center mb-6">Sertifikat Generator</h1>
+      <form
+        action="/upload"
+        method="post"
+        enctype="multipart/form-data"
+        class="space-y-4"
+      >
+        <div>
+          <label for="file" class="block text-sm font-medium text-gray-700"
+            >Unggah File PDF:</label
+          >
+          <input
+            type="file"
+            id="file"
+            name="file"
+            accept=".pdf"
+            required
+            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
+        >
+          Generate Hash
+        </button>
+      </form>
+      {% if file_path %}
+      <div class="mt-6">
+        <h2 class="text-xl font-semibold">Hash Berhasil Dibuat</h2>
+        <p class="mt-2">
+          SHA-256 Hash: <span class="font-mono">{{ sha256_hash }}</span>
+        </p>
+        <p class="mt-2">
+          SHA-3 Hash: <span class="font-mono">{{ sha3_hash }}</span>
+        </p>
+      </div>
+      {% endif %}
+      <div class="mt-4 text-sm text-gray-600">
+        <p>
+          Proses ini akan menghasilkan hash dari file PDF yang diunggah
+          menggunakan dua algoritma:
+        </p>
+        <ul class="list-disc list-inside">
+          <li>
+            <strong>SHA-256:</strong> Algoritma hash yang menghasilkan output
+            256-bit.
+          </li>
+          <li>
+            <strong>SHA-3:</strong> Algoritma hash terbaru yang menawarkan
+            keamanan lebih tinggi.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
